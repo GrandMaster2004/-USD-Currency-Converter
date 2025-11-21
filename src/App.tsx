@@ -1,3 +1,4 @@
+import "./App.css";
 import { useState, useEffect } from "react";
 
 const currencyNames = {
@@ -106,30 +107,30 @@ export default function USDConverter() {
   }
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex flex-col items-center justify-start sm:justify-center px-3 py-4 sm:p-6 md:p-8 overflow-auto">
-      <div className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl">
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl border border-white/20">
+    <div className="min-h-screen min-w-full w-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex flex-col items-center justify-center px-2 py-3 sm:p-4 md:p-6 overflow-x-hidden overflow-y-auto box-border">
+      <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
+        <div className="bg-white/10 backdrop-blur-lg rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 shadow-2xl border border-white/20">
           {/* Header */}
-          <div className="text-center mb-4 sm:mb-6 md:mb-8">
-            <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-r from-green-400 to-emerald-500 rounded-xl sm:rounded-2xl mb-2 sm:mb-3 shadow-lg">
-              <span className="text-2xl sm:text-3xl md:text-4xl">💱</span>
+          <div className="text-center mb-3 sm:mb-4">
+            <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-green-400 to-emerald-500 rounded-lg sm:rounded-xl mb-2 shadow-lg">
+              <span className="text-xl sm:text-2xl">💱</span>
             </div>
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-tight">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-white leading-tight">
               USD Currency Converter
             </h1>
-            <p className="text-blue-200 text-xs sm:text-sm mt-1">
-              Convert USD to 150+ currencies worldwide
+            <p className="text-blue-200 text-xs mt-0.5">
+              Convert USD to 150+ currencies
             </p>
           </div>
 
-          <div className="space-y-4 sm:space-y-5">
+          <div className="space-y-3 sm:space-y-4">
             {/* Amount Input */}
             <div>
-              <label className="block text-blue-200 text-xs sm:text-sm font-medium mb-1.5 sm:mb-2">
+              <label className="block text-blue-200 text-xs font-medium mb-1">
                 Amount in USD
               </label>
               <div className="relative">
-                <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-400 font-semibold text-base sm:text-lg">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold text-sm">
                   $
                 </span>
                 <input
@@ -142,14 +143,14 @@ export default function USDConverter() {
                     setError("");
                   }}
                   placeholder="Enter amount"
-                  className="w-full bg-white/10 border border-white/20 rounded-xl py-3 sm:py-3.5 md:py-4 pl-8 sm:pl-10 pr-4 text-white text-base sm:text-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all"
+                  className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 sm:py-3 pl-7 pr-3 text-white text-sm sm:text-base placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all"
                 />
               </div>
             </div>
 
             {/* Currency Select */}
             <div>
-              <label className="block text-blue-200 text-xs sm:text-sm font-medium mb-1.5 sm:mb-2">
+              <label className="block text-blue-200 text-xs font-medium mb-1">
                 Target Currency
               </label>
               <div className="relative">
@@ -159,7 +160,7 @@ export default function USDConverter() {
                     setTargetCurrency(e.target.value);
                     setResult(null);
                   }}
-                  className="w-full bg-white/10 border border-white/20 rounded-xl py-3 sm:py-3.5 md:py-4 px-4 text-white text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-green-400 transition-all appearance-none cursor-pointer pr-10"
+                  className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 sm:py-3 px-3 text-white text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-400 transition-all appearance-none cursor-pointer pr-8"
                 >
                   {sortedCurrencies.map((code) => (
                     <option
@@ -171,9 +172,9 @@ export default function USDConverter() {
                     </option>
                   ))}
                 </select>
-                <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                <div className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none">
                   <svg
-                    className="w-5 h-5 text-gray-400"
+                    className="w-4 h-4 text-gray-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -190,7 +191,7 @@ export default function USDConverter() {
             </div>
 
             {/* Quick Currency Buttons */}
-            <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
+            <div className="flex flex-wrap justify-center gap-1.5">
               {quickCurrencies.map((cur) => (
                 <button
                   key={cur}
@@ -198,9 +199,9 @@ export default function USDConverter() {
                     setTargetCurrency(cur);
                     setResult(null);
                   }}
-                  className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all active:scale-95 ${
+                  className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all active:scale-95 ${
                     targetCurrency === cur
-                      ? "bg-green-500 text-white shadow-lg shadow-green-500/30"
+                      ? "bg-green-500 text-white shadow-md"
                       : "bg-white/10 text-gray-300 hover:bg-white/20"
                   }`}
                 >
@@ -211,7 +212,7 @@ export default function USDConverter() {
 
             {/* Error */}
             {error && (
-              <div className="bg-red-500/20 border border-red-500/50 rounded-xl p-3 text-red-200 text-xs sm:text-sm text-center animate-pulse">
+              <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-2 text-red-200 text-xs text-center">
                 ⚠️ {error}
               </div>
             )}
@@ -220,18 +221,18 @@ export default function USDConverter() {
             <button
               onClick={handleConvert}
               disabled={converting}
-              className="w-full bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600 active:scale-98 text-white font-semibold py-3.5 sm:py-4 rounded-xl shadow-lg shadow-green-500/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-base sm:text-lg"
+              className="w-full bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600 active:scale-98 text-white font-semibold py-2.5 sm:py-3 rounded-lg shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base"
             >
               {converting ? (
                 <>
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                   <span>Converting...</span>
                 </>
               ) : (
                 <>
                   <span>Convert</span>
                   <svg
-                    className="w-5 h-5"
+                    className="w-4 h-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -249,28 +250,26 @@ export default function USDConverter() {
 
             {/* Result */}
             {result && (
-              <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/30 rounded-xl p-4 sm:p-5 md:p-6 animate-fade-in">
+              <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/30 rounded-lg p-3 sm:p-4">
                 <div className="text-center">
-                  <p className="text-green-200 text-xs sm:text-sm mb-2">
+                  <p className="text-green-200 text-xs mb-1">
                     Converted Amount
                   </p>
                   <div className="flex items-baseline justify-center flex-wrap gap-1">
-                    <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
+                    <p className="text-xl sm:text-2xl font-bold text-white">
                       {result.amount.toLocaleString("en-US", {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 4,
                       })}
                     </p>
-                    <span className="text-lg sm:text-xl md:text-2xl text-green-400 font-semibold">
+                    <span className="text-base sm:text-lg text-green-400 font-semibold">
                       {result.currency}
                     </span>
                   </div>
-                  <div className="mt-3 pt-3 border-t border-white/10">
-                    <div className="inline-flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-lg">
-                      <span className="text-gray-400 text-xs sm:text-sm">
-                        1 USD =
-                      </span>
-                      <span className="text-white text-xs sm:text-sm font-medium">
+                  <div className="mt-2 pt-2 border-t border-white/10">
+                    <div className="inline-flex items-center gap-1.5 bg-white/5 px-2 py-1 rounded-md">
+                      <span className="text-gray-400 text-xs">1 USD =</span>
+                      <span className="text-white text-xs font-medium">
                         {result.rate.toLocaleString("en-US", {
                           maximumFractionDigits: 6,
                         })}{" "}
@@ -283,20 +282,15 @@ export default function USDConverter() {
             )}
 
             {/* Footer */}
-            <div className="text-center pt-3 sm:pt-4 border-t border-white/10">
-              <p className="text-gray-400 text-xs sm:text-sm flex items-center justify-center gap-1.5 flex-wrap">
+            <div className="text-center pt-2 border-t border-white/10">
+              <p className="text-gray-400 text-xs flex items-center justify-center gap-1">
                 <span>📅</span>
-                <span>Rates as of:</span>
-                <span className="text-blue-300 font-medium">{date}</span>
+                <span>Rates:</span>
+                <span className="text-blue-300">{date}</span>
               </p>
             </div>
           </div>
         </div>
-
-        {/* Attribution */}
-        <p className="text-center text-gray-500 text-xs mt-4 px-4">
-          Exchange rates provided by open-source currency API
-        </p>
       </div>
     </div>
   );
