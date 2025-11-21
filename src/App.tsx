@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import "./App.css";
+
 interface CurrencyRates {
   [key: string]: number;
 }
@@ -107,7 +108,7 @@ export default function USDConverter() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex items-center justify-center p-4">
+      <div className="fixed inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex items-center justify-center p-4 overflow-y-auto">
         <div className="text-white text-sm sm:text-base md:text-lg flex items-center gap-3">
           <div className="w-5 h-5 sm:w-6 sm:h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
           Loading exchange rates...
@@ -117,7 +118,7 @@ export default function USDConverter() {
   }
 
   return (
-    <div className="min-h-screen min-w-full w-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex flex-col items-center justify-center px-2 py-3 sm:p-4 md:p-6 overflow-x-hidden overflow-y-auto box-border">
+    <div className="fixed inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex flex-col items-center justify-center px-2 py-3 sm:p-4 md:p-6 overflow-y-auto">
       <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
         <div className="bg-white/10 backdrop-blur-lg rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 shadow-2xl border border-white/20">
           {/* Header */}
@@ -262,9 +263,7 @@ export default function USDConverter() {
             {result && (
               <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/30 rounded-lg p-3 sm:p-4">
                 <div className="text-center">
-                  <p className="text-green-200 text-xs mb-1">
-                    Converted Amount
-                  </p>
+                  <p className="text-green-200 text-xs mb-1">Converted Amount</p>
                   <div className="flex items-baseline justify-center flex-wrap gap-1">
                     <p className="text-xl sm:text-2xl font-bold text-white">
                       {result.amount.toLocaleString("en-US", {
