@@ -1,7 +1,17 @@
-import "./App.css";
 import { useState, useEffect } from "react";
 
-const currencyNames = {
+// Type definitions
+interface CurrencyRates {
+  [key: string]: number;
+}
+
+interface ConversionResult {
+  amount: number;
+  rate: number;
+  currency: string;
+}
+
+const currencyNames: { [key: string]: string } = {
   inr: "Indian Rupee",
   eur: "Euro",
   gbp: "British Pound",
@@ -34,14 +44,14 @@ const currencyNames = {
 };
 
 export default function USDConverter() {
-  const [amount, setAmount] = useState("");
-  const [targetCurrency, setTargetCurrency] = useState("inr");
-  const [currencies, setCurrencies] = useState({});
-  const [date, setDate] = useState("");
-  const [result, setResult] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [converting, setConverting] = useState(false);
-  const [error, setError] = useState("");
+  const [amount, setAmount] = useState<string>("");
+  const [targetCurrency, setTargetCurrency] = useState<string>("inr");
+  const [currencies, setCurrencies] = useState<CurrencyRates>({});
+  const [date, setDate] = useState<string>("");
+  const [result, setResult] = useState<ConversionResult | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [converting, setConverting] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     fetch(
@@ -59,8 +69,8 @@ export default function USDConverter() {
       });
   }, []);
 
-  const handleConvert = () => {
-    if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
+  const handleConvert = (): void => {
+    if (!amount || isNaN(Number(amount)) || parseFloat(amount) <= 0) {
       setError("Please enter a valid amount");
       return;
     }
@@ -78,7 +88,7 @@ export default function USDConverter() {
     }, 300);
   };
 
-  const getCurrencyLabel = (code) => {
+  const getCurrencyLabel = (code: string): string => {
     const name = currencyNames[code];
     return name ? `${code.toUpperCase()} - ${name}` : code.toUpperCase();
   };
@@ -221,7 +231,7 @@ export default function USDConverter() {
             <button
               onClick={handleConvert}
               disabled={converting}
-              className="w-full bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600 active:scale-98 text-white font-semibold py-2.5 sm:py-3 rounded-lg shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base"
+              className="w-full bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600 active:scale-95 text-white font-semibold py-2.5 sm:py-3 rounded-lg shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base"
             >
               {converting ? (
                 <>
