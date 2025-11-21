@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-// Type definitions
+import "./App.css";
 interface CurrencyRates {
   [key: string]: number;
 }
